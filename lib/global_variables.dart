@@ -50,7 +50,7 @@ final cart = [
   'price':38.70,
   'imageUrl':'assets/images/bata_shoes_1.jpeg',
   'company':'Bata',
-  'sizes':[7,8,9,10]
+  'size':7
 
 }
 

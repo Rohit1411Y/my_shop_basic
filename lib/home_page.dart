@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
     selectedFilter = filters[0];
     super.initState();
   }
-int currentPage = 1;
+int currentPage = 0;
   @override
   Widget build(BuildContext context) {
     const border =  OutlineInputBorder(

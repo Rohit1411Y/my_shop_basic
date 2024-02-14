@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_shop/cart_provider.dart';
+import 'package:provider/provider.dart';
 
 
 class ProductDetatilsPage extends StatefulWidget {
@@ -11,13 +13,14 @@ class ProductDetatilsPage extends StatefulWidget {
   @override
   State<ProductDetatilsPage> createState() => _ProductDetatilsPageState();
 }
-int selectedSize = 0;
+
 class _ProductDetatilsPageState extends State<ProductDetatilsPage> {
+  int selectedSize = 0;
   @override
   
   Widget build(BuildContext context) {
      List<int>X = widget.product['sizes']as List<int>;
-    
+   
     
     return  Scaffold(
       appBar: AppBar(
@@ -77,10 +80,27 @@ class _ProductDetatilsPageState extends State<ProductDetatilsPage> {
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: ElevatedButton(onPressed: (){
+                child: ElevatedButton(
+                  onPressed: (){
+                    print(4);
+                    if(selectedSize!=0){
+  Provider.of<CartProvider>(context,listen: false).addProduct({
+                  'id':widget.product['id'],
+  'title':widget.product['title'],
+  'price':widget.product['price'],
+  'imageUrl':widget.product['imageUrl'],
+  'company':widget.product['company'],
+  'size':selectedSize
+                });
+                    }
+                    else{
+                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content:Text("Please Select a Size"),),);
+                    }
+              
                 
                 }, 
                 style: ElevatedButton.styleFrom(
+                
                 backgroundColor: Theme.of(context).colorScheme.primary,
                             minimumSize: const Size(double.infinity, 50)
                 ),
